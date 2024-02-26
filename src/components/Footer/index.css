@@ -1,0 +1,53 @@
+.footer-container {
+  text-align: center;
+  color: var(--light-blue-gray-50, #f8fafc);
+  align-items: center;
+}
+
+.logo-name {
+  color: var(--light-blue-gray-50, #f8fafc);
+  text-align: center;
+  font-family: Bree Serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 120% */
+  margin-bottom: 20px;
+}
+.footer-text {
+  margin-bottom: 20px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #94a3b8;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vector-icon {
+  width: 42px;
+  height: 46.11px;
+  top: 2891.67px;
+  border: 2px;
+}
+
+.instagram-icon {
+  width: 47px;
+  height: 61px;
+  top: 2880px;
+  margin-left: 90px;
+}
+
+.twitter-icon {
+  width: 49px;
+  height: 40px;
+  top: 2888px;
+  margin-left: 90px;
+  padding: 0.16px, 0.16px, 0.16px, 0.16px;
+}

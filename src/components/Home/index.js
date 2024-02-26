@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import {FiSearch} from 'react-icons/fi'
+import Footer from '../Footer'
 import './index.css'
 
 const statesList = [
@@ -230,7 +231,6 @@ const Home = () => {
 
       <div className="table-container">
         <table className="table-data-lists">
-          {console.log(dataList)}
           <thead>
             <tr id="heading-items">
               <th className="table-heading">States/UT</th>
@@ -241,19 +241,31 @@ const Home = () => {
               <th className="table-heading">Population</th>
             </tr>
           </thead>
+
           <tbody>
             {dataList.map(element => (
               <tr>
                 <td className="table-item state-name">{element.name}</td>
-                <td className="table-item">{element.confirmed}</td>
-                <td className="table-item">{element.active}</td>
-                <td className="table-item">{element.recovered}</td>
-                <td className="table-item">{element.deceased}</td>
-                <td className="table-item">{element.population}</td>
+                <td className="table-item confirm-cases">
+                  {element.confirmed}
+                </td>
+                <td className="table-item active-cases">{element.active}</td>
+                <td className="table-item recovered-cases">
+                  {element.recovered}
+                </td>
+                <td className="table-item deceased-cases">
+                  {element.deceased}
+                </td>
+                <td className="table-item population-cases">
+                  {element.population}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="footer-block">
+        <Footer />
       </div>
     </div>
   )

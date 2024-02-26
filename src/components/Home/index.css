@@ -156,19 +156,21 @@ svg {
 }
 
 .table-container {
-  width: 65%;
+  width: 74%;
   margin: 0 auto;
 }
 
 .table-data-lists {
+  margin-top: 200px;
   color: #475569;
   border: 1px solid #475569;
-  /* border-collapse: collapse; */
   width: 1146px;
   height: 2080px;
   top: 576px;
   left: 150px;
   border-radius: 12px;
+  background-color: #1e1e30;
+  padding: 20px;
 }
 #heading-items {
   border-bottom-width: 1px;
@@ -177,11 +179,48 @@ svg {
 }
 .table-heading {
   color: white;
-  padding: 8px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
   text-align: left;
 }
 .table-item {
   color: #f8fafc;
-  padding: 8px;
-  font-size: 12px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.state-name {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.confirm-cases {
+  color: #ff073a;
+}
+.active-cases {
+  color: #007bff;
+}
+
+.recovered-cases {
+  color: #28a745;
+}
+
+.deceased-cases {
+  color: #6c757d;
+}
+
+.population-cases {
+  color: #94a3b8;
+}
+.footer-block {
+  margin-top: 400px;
 }
