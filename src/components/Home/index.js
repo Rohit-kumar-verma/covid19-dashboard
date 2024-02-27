@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
 import {FiSearch} from 'react-icons/fi'
+import {IoIosArrowDropright} from 'react-icons/io'
 import Footer from '../Footer'
+import Header from '../Header'
 import './index.css'
 
 const statesList = [
@@ -152,6 +154,8 @@ const statesList = [
 
 const Home = () => {
   const [dataList, setDataList] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredData, setFilteredData] = useState([])
 
   function convertObjectsDataIntoListItemsUsingForInMethod(data) {
     const resultList = []
@@ -161,7 +165,6 @@ const Home = () => {
     keyNames.forEach(keyName => {
       if (data[keyName]) {
         const {total} = data[keyName]
-        // console.log(statesList)
 
         //   if the state's covid data is available we will store it or we will store 0
         const confirmed = total.confirmed ? total.confirmed : 0
@@ -184,7 +187,7 @@ const Home = () => {
         })
       }
     })
-    return resultList
+    return resultList.filter(item => item.name)
   }
 
   useEffect(() => {
@@ -195,7 +198,6 @@ const Home = () => {
         )
         const data = await response.json()
         setDataList(convertObjectsDataIntoListItemsUsingForInMethod(data))
-        // console.log(dataList)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -204,66 +206,85 @@ const Home = () => {
     fetchData()
   }, [])
 
+  const handleSearch = e => {
+    const TermValue = e.target.value
+    setSearchTerm(TermValue)
+    const DataValue = dataList.filter(item =>
+      item?.name.toLowerCase().includes(TermValue.toLowerCase()),
+    )
+    setFilteredData(DataValue)
+  }
+
   return (
     //
     <div className="main-container">
-      <nav>
-        <div className="navbar-container">
-          <h1 className="logo-name">
-            COVID19<span>INDIA</span>
-          </h1>
-          <div className="nav-items-container">
-            <ul className="nav-items-block">
-              <li className="nav-list">Home</li>
-              <li className="nav-list">About</li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <Header />
       <div className="search-bar-container">
         <FiSearch className="search-icon" />
         <input
           className="search-input"
           type="search"
           placeholder="Enter the State"
+          value={searchTerm}
+          onChange={handleSearch}
         />
       </div>
-
-      <div className="table-container">
-        <table className="table-data-lists">
-          <thead>
-            <tr id="heading-items">
-              <th className="table-heading">States/UT</th>
-              <th className="table-heading">Confirmed</th>
-              <th className="table-heading">Active</th>
-              <th className="table-heading">Recovered</th>
-              <th className="table-heading">Deceased</th>
-              <th className="table-heading">Population</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {dataList.map(element => (
-              <tr>
-                <td className="table-item state-name">{element.name}</td>
-                <td className="table-item confirm-cases">
-                  {element.confirmed}
-                </td>
-                <td className="table-item active-cases">{element.active}</td>
-                <td className="table-item recovered-cases">
-                  {element.recovered}
-                </td>
-                <td className="table-item deceased-cases">
-                  {element.deceased}
-                </td>
-                <td className="table-item population-cases">
-                  {element.population}
-                </td>
+      {filteredData.length > 0 ? (
+        <div className="search-data-container">
+          {filteredData.map(element => (
+            <div key={element.stateCode}>
+              <ul className="search-data">
+                <li className="list-item">
+                  <div className="item-value">
+                    <h3 className="state-name-value">{element.name}</h3>
+                    <div className="open-detail">
+                      <h2 className="state-code-value">{element.stateCode}</h2>
+                      <IoIosArrowDropright className="right-arrow-icon" />
+                    </div>
+                  </div>
+                  <hr />
+                </li>
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="table-container">
+          <table className="table-data-lists">
+            <thead>
+              <tr id="heading-items">
+                <th className="table-heading">States/UT</th>
+                <th className="table-heading">Confirmed</th>
+                <th className="table-heading">Active</th>
+                <th className="table-heading">Recovered</th>
+                <th className="table-heading">Deceased</th>
+                <th className="table-heading">Population</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              {dataList.map(element => (
+                <tr key={element.stateCode}>
+                  <td className="table-item state-name">{element.name}</td>
+                  <td className="table-item confirm-cases">
+                    {element.confirmed}
+                  </td>
+                  <td className="table-item active-cases">{element.active}</td>
+                  <td className="table-item recovered-cases">
+                    {element.recovered}
+                  </td>
+                  <td className="table-item deceased-cases">
+                    {element.deceased}
+                  </td>
+                  <td className="table-item population-cases">
+                    {element.population}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       <div className="footer-block">
         <Footer />
       </div>
