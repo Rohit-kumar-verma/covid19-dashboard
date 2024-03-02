@@ -4,6 +4,7 @@ import Home from './components/Home'
 // import About from './components/About';
 // import Contact from './components/Contact';
 import './App.css'
+import StateDetails from './components/StateDetails'
 
 const App = () => (
   <Router>
@@ -11,6 +12,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       {/* <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} /> */}
+      <Route exact path="/state" component={StateDetails} />
     </Switch>
   </Router>
 )

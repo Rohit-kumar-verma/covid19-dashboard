@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {FiSearch} from 'react-icons/fi'
 import {IoIosArrowDropright} from 'react-icons/io'
 import Footer from '../Footer'
@@ -197,6 +198,8 @@ const Home = () => {
           'https://apis.ccbp.in/covid19-state-wise-data',
         )
         const data = await response.json()
+        console.log(data)
+
         setDataList(convertObjectsDataIntoListItemsUsingForInMethod(data))
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -237,10 +240,14 @@ const Home = () => {
                 <li className="list-item">
                   <div className="item-value">
                     <h3 className="state-name-value">{element.name}</h3>
-                    <div className="open-detail">
-                      <h2 className="state-code-value">{element.stateCode}</h2>
-                      <IoIosArrowDropright className="right-arrow-icon" />
-                    </div>
+                    <Link to={`/${element.stateCode}`}>
+                      <div className="open-detail">
+                        <h2 className="state-code-value">
+                          {element.stateCode}
+                        </h2>
+                        <IoIosArrowDropright className="right-arrow-icon" />
+                      </div>
+                    </Link>
                   </div>
                   <hr />
                 </li>

@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.state-detail-container {
+  /* background: #161625; */
+  width: auto;
+  height: 3037px;
+  /* flex-shrink: 0; */
+  padding: 50px;
+}
+.bar {
+  color: white !important;
+}
