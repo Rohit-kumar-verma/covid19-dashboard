@@ -1,15 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
 }
 
 .state-detail-container {
-  /* background: #161625; */
+  background: #161625;
   width: auto;
-  height: 3037px;
+  height: 3000px;
   /* flex-shrink: 0; */
   padding: 50px;
+  color: aliceblue;
 }
-.bar {
+
+.bar-chart-block {
+  text-align: center;
+}
+.bar-chart {
   color: white !important;
+  display: grid;
+  column-gap: 20px;
 }

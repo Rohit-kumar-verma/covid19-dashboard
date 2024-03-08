@@ -1,13 +1,11 @@
 import {useState, useEffect} from 'react'
-// import {Line} from 'react-chartjs-2'
+
 import {
-  LineChart,
+  //   LineChart,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
   Legend,
-  Line,
+  //   Line,
   BarChart,
   Bar,
 } from 'recharts'
@@ -35,24 +33,26 @@ export default function StateDetails() {
         console.log(keyNames)
 
         keyNames.forEach(element => {
-          console.log('date: ', element)
-          console.log('confirmed:', jsonData.AP.dates[element].total.confirmed)
-          console.log('deceased:', jsonData.AP.dates[element].total.deceased)
-          console.log('recovered:', jsonData.AP.dates[element].total.recovered)
-          console.log('tested:', jsonData.AP.dates[element].total.tested)
+          //   console.log('date: ', element)
+          //   console.log('confirmed:', jsonData.AP.dates[element].total.confirmed)
+          //   console.log('deceased:', jsonData.AP.dates[element].total.deceased)
+          //   console.log('recovered:', jsonData.AP.dates[element].total.recovered)
+          //   console.log('tested:', jsonData.AP.dates[element].total.tested)
 
           resultListData.push({
             date: element,
             confirmed: jsonData.AP.dates[element].total.confirmed,
           })
         })
-        const filterDate = new Date('2021-10-26')
+        const filterDate = new Date('2021-10-21')
         setStateDetailData(
           resultListData.filter(item => {
             const itemDate = new Date(item.date)
             return itemDate > filterDate
           }),
         )
+        console.log(resultListData)
+
         console.log(stateDetailData)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -62,48 +62,26 @@ export default function StateDetails() {
     fetchData()
   }, [])
 
-  function renderLineChart() {
-    return (
-      <div>
-        <h1>Line Chart</h1>
-        <div className="App">
-          <LineChart
-            width={730}
-            height={250}
-            data={stateDetailData}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="count" stroke="#8884d8" />
-          </LineChart>
-        </div>
-      </div>
-    )
-  }
-
   function renderBarChart() {
     return (
-      <div>
-        <h1>Bar Chart</h1>
-        <div>
-          <BarChart width={1032} height={450} data={stateDetailData}>
-            <CartesianGrid strokeDasharray="" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar
-              dataKey="confirmed"
-              fill="#8884d8"
-              className="bar"
-              label={{position: 'top', color: 'white'}}
-            />
-          </BarChart>
-        </div>
+      <div className="bar-chart-block flex items-center">
+        <BarChart width={600} height={400} data={stateDetailData}>
+          {/* <CartesianGrid strokeDasharray="" /> */}
+          {/* <XAxis
+            dataKey="date"
+            label={{position: 'bottom', color: 'white', fontSize: '12'}}
+          /> */}
+          <Bar
+            dataKey="confirmed"
+            fill="#9A0E31"
+            className="bar-chart"
+            label={{
+              position: 'top',
+              color: 'white',
+              fontSize: '12',
+            }}
+          />
+        </BarChart>
       </div>
     )
   }
@@ -120,7 +98,6 @@ export default function StateDetails() {
           <p>20239390</p>
         </div>
         {renderBarChart()}
-        {renderLineChart()}
       </div>
     </div>
   )
