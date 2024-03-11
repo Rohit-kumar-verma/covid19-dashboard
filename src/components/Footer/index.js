@@ -1,6 +1,7 @@
 import './index.css'
-import {BsInstagram} from 'react-icons/bs'
-import {FiTwitter, FiGithub} from 'react-icons/fi'
+import {FaTwitter} from 'react-icons/fa'
+import {FiInstagram} from 'react-icons/fi'
+import {VscGithubAlt} from 'react-icons/vsc'
 
 export default function Footer() {
   return (
@@ -9,12 +10,12 @@ export default function Footer() {
         COVID19<span>INDIA</span>
       </h1>
       <p className="footer-text">
-        We stand with the everyone fighting on the front lines
+        we stand with everyone fighting on the front lines
       </p>
       <div className="icons">
-        <FiGithub className="vector-icon" />
-        <BsInstagram className="instagram-icon" />
-        <FiTwitter className="twitter-icon" />
+        <VscGithubAlt className="vector-icon" />
+        <FiInstagram className="instagram-icon" />
+        <FaTwitter className="twitter-icon" />
       </div>
     </div>
   )

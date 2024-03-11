@@ -6,6 +6,14 @@
   padding: 0;
   margin: 0;
 }
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  border-width: 0px, 0px, 0px, 0px;
+
+  border-style: solid;
+  border-color: #ff073a;
+}
 
 .state-detail-container {
   background: #161625;

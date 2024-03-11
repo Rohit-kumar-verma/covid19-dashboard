@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react'
 
 import {
-  //   LineChart,
+  LineChart,
   XAxis,
   YAxis,
-  Legend,
-  //   Line,
+  Tooltip,
+  Line,
   BarChart,
   Bar,
+  //   ResponsiveContainer,
 } from 'recharts'
 import Header from '../Header'
 import './index.css'
@@ -62,15 +63,26 @@ export default function StateDetails() {
     fetchData()
   }, [])
 
+  function renderLineChart() {
+    return (
+      <div>
+        <h1>Line Chart</h1>
+        <div className="App">
+          <LineChart width={730} height={250} data={stateDetailData}>
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="confirmed" stroke="#9A0E31" />
+          </LineChart>
+        </div>
+      </div>
+    )
+  }
+
   function renderBarChart() {
     return (
       <div className="bar-chart-block flex items-center">
         <BarChart width={600} height={400} data={stateDetailData}>
-          {/* <CartesianGrid strokeDasharray="" /> */}
-          {/* <XAxis
-            dataKey="date"
-            label={{position: 'bottom', color: 'white', fontSize: '12'}}
-          /> */}
           <Bar
             dataKey="confirmed"
             fill="#9A0E31"
@@ -98,6 +110,7 @@ export default function StateDetails() {
           <p>20239390</p>
         </div>
         {renderBarChart()}
+        {renderLineChart()}
       </div>
     </div>
   )

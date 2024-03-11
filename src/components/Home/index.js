@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {FiSearch} from 'react-icons/fi'
-import {IoIosArrowDropright} from 'react-icons/io'
+import {BsSearch} from 'react-icons/bs'
+import {BiChevronRightSquare} from 'react-icons/bi'
 import Footer from '../Footer'
 import Header from '../Header'
 import './index.css'
@@ -223,7 +223,7 @@ const Home = () => {
     <div className="main-container">
       <Header />
       <div className="search-bar-container">
-        <FiSearch className="search-icon" />
+        <BsSearch className="search-icon" />
         <input
           className="search-input"
           type="search"
@@ -238,17 +238,18 @@ const Home = () => {
             <div key={element.stateCode}>
               <ul className="search-data">
                 <li className="list-item">
-                  <div className="item-value">
-                    <h3 className="state-name-value">{element.name}</h3>
-                    <Link to={`/${element.stateCode}`}>
+                  <Link to={`/${element.stateCode}`}>
+                    <div className="item-value">
+                      <h3 className="state-name-value">{element.name}</h3>
+
                       <div className="open-detail">
                         <h2 className="state-code-value">
                           {element.stateCode}
                         </h2>
-                        <IoIosArrowDropright className="right-arrow-icon" />
+                        <BiChevronRightSquare className="right-arrow-icon" />
                       </div>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                   <hr />
                 </li>
               </ul>
@@ -256,12 +257,12 @@ const Home = () => {
           ))}
         </div>
       ) : (
-        <div className="table-container">
+        <div className="table-container" data-testId="stateWiseCovidDataTable">
           <table className="table-data-lists">
             <thead>
               <tr id="heading-items">
                 <th className="table-heading">States/UT</th>
-                <th className="table-heading">Confirmed</th>
+                <p className="table-heading">Confirmed</p>
                 <th className="table-heading">Active</th>
                 <th className="table-heading">Recovered</th>
                 <th className="table-heading">Deceased</th>
