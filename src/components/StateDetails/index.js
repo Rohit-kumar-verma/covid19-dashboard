@@ -11,6 +11,7 @@ import {
   //   ResponsiveContainer,
 } from 'recharts'
 import Header from '../Header'
+import Footer from '../Footer'
 import './index.css'
 
 export default function StateDetails() {
@@ -30,7 +31,7 @@ export default function StateDetails() {
         console.log(jsonData)
 
         setStateDetailData(jsonData)
-        const keyNames = Object.keys(jsonData.AP.dates)
+        const keyNames = Object.keys(jsonData.AN.dates)
         console.log(keyNames)
 
         keyNames.forEach(element => {
@@ -42,19 +43,17 @@ export default function StateDetails() {
 
           resultListData.push({
             date: element,
-            confirmed: jsonData.AP.dates[element].total.confirmed,
+            confirmed: jsonData.AN.dates[element].total.confirmed,
+            deceased: jsonData.AN.dates[element].total.deceased,
+            recovered: jsonData.AN.dates[element].total.recovered,
+            tested: jsonData.AN.dates[element].total.tested,
+            active:
+              jsonData.AN.dates[element].total.confirmed -
+              (jsonData.AN.dates[element].total.deceased +
+                jsonData.AN.dates[element].total.recovered),
           })
         })
-        const filterDate = new Date('2021-10-21')
-        setStateDetailData(
-          resultListData.filter(item => {
-            const itemDate = new Date(item.date)
-            return itemDate > filterDate
-          }),
-        )
-        console.log(resultListData)
-
-        console.log(stateDetailData)
+        setStateDetailData(resultListData)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -63,14 +62,13 @@ export default function StateDetails() {
     fetchData()
   }, [])
 
-  function renderLineChart() {
+  function renderConfirmedLineChart() {
     return (
       <div>
-        <h1>Line Chart</h1>
-        <div className="App">
-          <LineChart width={730} height={250} data={stateDetailData}>
-            <XAxis dataKey="date" />
-            <YAxis />
+        <div className="confirmed chart-block">
+          <LineChart width={1200} height={300} data={stateDetailData}>
+            <XAxis dataKey="date" stroke="#9A0E31" tick={{fontSize: 12}} />
+            <YAxis stroke="#9A0E31" tick={{fontSize: 12}} />
             <Tooltip />
             <Line type="monotone" dataKey="confirmed" stroke="#9A0E31" />
           </LineChart>
@@ -79,6 +77,63 @@ export default function StateDetails() {
     )
   }
 
+  function renderActiveLineChart() {
+    return (
+      <div>
+        <div className="active chart-block">
+          <LineChart width={1200} height={300} data={stateDetailData}>
+            <XAxis dataKey="date" stroke="#007BFF" tick={{fontSize: 12}} />
+            <YAxis stroke="#007BFF" tick={{fontSize: 12}} />
+            <Tooltip />
+            <Line type="monotone" dataKey="active" stroke="#007BFF" />
+          </LineChart>
+        </div>
+      </div>
+    )
+  }
+
+  function renderDeceasedLineChart() {
+    return (
+      <div>
+        <div className="deceased chart-block">
+          <LineChart width={1200} height={300} data={stateDetailData}>
+            <XAxis dataKey="date" stroke="#6C757D" tick={{fontSize: 12}} />
+            <YAxis stroke="#6C757D" tick={{fontSize: 12}} />
+            <Tooltip />
+            <Line type="monotone" dataKey="deceased" stroke="#6C757D" />
+          </LineChart>
+        </div>
+      </div>
+    )
+  }
+  function renderRecoveredLineChart() {
+    return (
+      <div>
+        <div className="recovered chart-block">
+          <LineChart width={1200} height={300} data={stateDetailData}>
+            <XAxis dataKey="date" stroke="#27A243" tick={{fontSize: 12}} />
+            <YAxis stroke="#27A243" tick={{fontSize: 12}} />
+            <Tooltip />
+            <Line type="monotone" dataKey="recovered" stroke="#27A243" />
+          </LineChart>
+        </div>
+      </div>
+    )
+  }
+  function renderTestedLineChart() {
+    return (
+      <div>
+        <div className="tested chart-block">
+          <LineChart width={1200} height={300} data={stateDetailData}>
+            <XAxis dataKey="date" stroke="#9673B9" tick={{fontSize: 12}} />
+            <YAxis stroke="#9673B9" tick={{fontSize: 12}} />
+            <Tooltip />
+            <Line type="monotone" dataKey="tested" stroke="#9673B9" />
+          </LineChart>
+        </div>
+      </div>
+    )
+  }
   function renderBarChart() {
     return (
       <div className="bar-chart-block flex items-center">
@@ -109,8 +164,15 @@ export default function StateDetails() {
           <p>Tested</p>
           <p>20239390</p>
         </div>
-        {renderBarChart()}
-        {renderLineChart()}
+        <>
+          {renderBarChart()}
+          {renderConfirmedLineChart()}
+          {renderActiveLineChart()}
+          {renderRecoveredLineChart()}
+          {renderDeceasedLineChart()}
+          {renderTestedLineChart()}
+        </>
+        <Footer />
       </div>
     </div>
   )

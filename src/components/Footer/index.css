@@ -1,7 +1,8 @@
 .footer-container {
   text-align: center;
   color: var(--light-blue-gray-50, #f8fafc);
-  align-items: center;
+  /* align-items: center; */
+  margin-top: auto;
 }
 
 .logo-name {

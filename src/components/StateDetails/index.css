@@ -2,24 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  padding: 0;
-  margin: 0;
-}
-.App {
+.chart-block {
   font-family: sans-serif;
   text-align: center;
   border-width: 0px, 0px, 0px, 0px;
+  border-radius: 12px;
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
 
-  border-style: solid;
-  border-color: #ff073a;
+  margin-left: auto;
+}
+.confirmed {
+  background-color: #331427;
+}
+.active {
+  background-color: #132240;
+}
+.deceased {
+  background-color: #1c1c2b;
+}
+.recovered {
+  background-color: rgba(39, 162, 67, 0.1);
+}
+.tested {
+  background-color: rgba(150, 115, 185, 0.1);
 }
 
 .state-detail-container {
   background: #161625;
   width: auto;
   height: 3000px;
-  /* flex-shrink: 0; */
   padding: 50px;
   color: aliceblue;
 }

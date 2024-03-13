@@ -219,7 +219,6 @@ const Home = () => {
   }
 
   return (
-    //
     <div className="main-container">
       <Header />
       <div className="search-bar-container">
