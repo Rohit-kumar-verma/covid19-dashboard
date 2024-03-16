@@ -158,12 +158,12 @@ export default function StateDetails() {
     <div className="details-main-container">
       <Header />
       <div className="state-detail-container">
-        <div>
+        <div className="header-block">
           <h1 className="state-name">Andhara Pradesh</h1>
-        </div>
-        <div>
-          <p>Tested</p>
-          <p>20239390</p>
+          <div className="header-block-right-1">
+            <p>Tested</p>
+            <p className="number-text">20239390</p>
+          </div>
         </div>
         <>
           <Counter />

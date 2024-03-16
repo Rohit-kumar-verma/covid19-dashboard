@@ -1,31 +1,31 @@
 import {Component} from 'react'
 import {FaRegCheckCircle} from 'react-icons/fa'
 
-// import './index.css'
+import './index.css'
 
 class Counter extends Component {
   render() {
     return (
-      <div className="grid grid-cols-4 gap-4">
-        <div className="">
-          <p>Confiremed</p>
+      <div className="counter-container">
+        <div className="confirmed-count count-block">
+          <p>Confirmed</p>
           <FaRegCheckCircle />
           <p>34285612</p>
         </div>
-        <div className="">
-          <p>Confiremed</p>
+        <div className="active-count count-block">
+          <p>Active</p>
           <FaRegCheckCircle />
-          <p>34285612</p>
+          <p>165803</p>
         </div>
-        <div className="">
-          <p>Confiremed</p>
+        <div className="recovered-count count-block">
+          <p>Recovered</p>
           <FaRegCheckCircle />
-          <p>34285612</p>
+          <p>33661339</p>
         </div>
-        <div className="">
-          <p>Confiremed</p>
+        <div className="deceased-count count-block">
+          <p>Deceased</p>
           <FaRegCheckCircle />
-          <p>34285612</p>
+          <p>458470</p>
         </div>
       </div>
     )

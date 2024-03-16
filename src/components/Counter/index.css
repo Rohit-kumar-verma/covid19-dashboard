@@ -1,0 +1,34 @@
+.counter-container {
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+.count-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  border-radius: 10px;
+  gap: 20px;
+}
+.confirmed-count {
+  color: #ff073a;
+  background: #331427;
+}
+
+.active-count {
+  color: #007bff;
+  background: #132240;
+}
+
+.recovered-count {
+  color: #28a745;
+  background: #182829;
+}
+
+.deceased-count {
+  color: #6c757d;
+  background: #212230;
+}
