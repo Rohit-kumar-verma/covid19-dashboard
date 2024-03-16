@@ -1,18 +1,32 @@
 import {Component} from 'react'
+import {FaRegCheckCircle} from 'react-icons/fa'
 
-import './index.css'
+// import './index.css'
 
 class Counter extends Component {
   render() {
     return (
-      <div>
-        <button type="button" onClick={this.onDecrement}>
-          -
-        </button>
-        <div>0</div>
-        <button type="button" onClick={this.onIncrement}>
-          +
-        </button>
+      <div className="grid grid-cols-4 gap-4">
+        <div className="">
+          <p>Confiremed</p>
+          <FaRegCheckCircle />
+          <p>34285612</p>
+        </div>
+        <div className="">
+          <p>Confiremed</p>
+          <FaRegCheckCircle />
+          <p>34285612</p>
+        </div>
+        <div className="">
+          <p>Confiremed</p>
+          <FaRegCheckCircle />
+          <p>34285612</p>
+        </div>
+        <div className="">
+          <p>Confiremed</p>
+          <FaRegCheckCircle />
+          <p>34285612</p>
+        </div>
       </div>
     )
   }

@@ -12,6 +12,7 @@ import {
 } from 'recharts'
 import Header from '../Header'
 import Footer from '../Footer'
+import Counter from '../Counter'
 import './index.css'
 
 export default function StateDetails() {
@@ -66,7 +67,7 @@ export default function StateDetails() {
     return (
       <div>
         <div className="confirmed chart-block">
-          <LineChart width={1200} height={300} data={stateDetailData}>
+          <LineChart width={900} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#9A0E31" tick={{fontSize: 12}} />
             <YAxis stroke="#9A0E31" tick={{fontSize: 12}} />
             <Tooltip />
@@ -81,7 +82,7 @@ export default function StateDetails() {
     return (
       <div>
         <div className="active chart-block">
-          <LineChart width={1200} height={300} data={stateDetailData}>
+          <LineChart width={900} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#007BFF" tick={{fontSize: 12}} />
             <YAxis stroke="#007BFF" tick={{fontSize: 12}} />
             <Tooltip />
@@ -96,7 +97,7 @@ export default function StateDetails() {
     return (
       <div>
         <div className="deceased chart-block">
-          <LineChart width={1200} height={300} data={stateDetailData}>
+          <LineChart width={900} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#6C757D" tick={{fontSize: 12}} />
             <YAxis stroke="#6C757D" tick={{fontSize: 12}} />
             <Tooltip />
@@ -110,7 +111,7 @@ export default function StateDetails() {
     return (
       <div>
         <div className="recovered chart-block">
-          <LineChart width={1200} height={300} data={stateDetailData}>
+          <LineChart width={900} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#27A243" tick={{fontSize: 12}} />
             <YAxis stroke="#27A243" tick={{fontSize: 12}} />
             <Tooltip />
@@ -124,7 +125,7 @@ export default function StateDetails() {
     return (
       <div>
         <div className="tested chart-block">
-          <LineChart width={1200} height={300} data={stateDetailData}>
+          <LineChart width={900} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#9673B9" tick={{fontSize: 12}} />
             <YAxis stroke="#9673B9" tick={{fontSize: 12}} />
             <Tooltip />
@@ -164,6 +165,9 @@ export default function StateDetails() {
           <p>Tested</p>
           <p>20239390</p>
         </div>
+        <>
+          <Counter />
+        </>
         <>
           {renderBarChart()}
           {renderConfirmedLineChart()}
