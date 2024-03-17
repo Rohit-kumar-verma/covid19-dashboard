@@ -10,8 +10,6 @@
   margin-top: 50px;
   padding: 20px;
   text-align: center;
-
-  margin-left: auto;
 }
 .confirmed {
   background-color: #331427;
@@ -35,6 +33,9 @@
   height: 3000px;
   padding: 50px;
   color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .header-block {
@@ -65,10 +66,12 @@
   font-weight: 500;
 }
 .bar-chart-block {
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
-.bar-chart {
-  color: white !important;
-  display: grid;
-  column-gap: 20px;
+.charts-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

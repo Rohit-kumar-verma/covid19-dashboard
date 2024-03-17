@@ -7,6 +7,7 @@ import {
   Tooltip,
   Line,
   BarChart,
+  Legend,
   Bar,
   //   ResponsiveContainer,
 } from 'recharts'
@@ -65,15 +66,25 @@ export default function StateDetails() {
 
   function renderConfirmedLineChart() {
     return (
-      <div>
-        <div className="confirmed chart-block">
-          <LineChart width={900} height={300} data={stateDetailData}>
-            <XAxis dataKey="date" stroke="#9A0E31" tick={{fontSize: 12}} />
-            <YAxis stroke="#9A0E31" tick={{fontSize: 12}} />
-            <Tooltip />
-            <Line type="monotone" dataKey="confirmed" stroke="#9A0E31" />
-          </LineChart>
-        </div>
+      <div className="confirmed chart-block">
+        <LineChart width={1000} height={300} data={stateDetailData}>
+          <XAxis dataKey="date" stroke="#9A0E31" tick={{fontSize: 12}} />
+          <YAxis stroke="#9A0E31" tick={{fontSize: 12}} />
+          <Tooltip />
+          <Legend
+            layout="vertical"
+            align="right"
+            verticalAlign="top"
+            wrapperStyle={{
+              position: 'absolute',
+              right: '0px',
+              top: '0px',
+              padding: '10px',
+            }}
+            payload={[{value: 'confirmed', color: 'red', type: 'line'}]}
+          />
+          <Line type="monotone" dataKey="confirmed" stroke="#9A0E31" />
+        </LineChart>
       </div>
     )
   }
@@ -82,10 +93,22 @@ export default function StateDetails() {
     return (
       <div>
         <div className="active chart-block">
-          <LineChart width={900} height={300} data={stateDetailData}>
+          <LineChart width={1000} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#007BFF" tick={{fontSize: 12}} />
             <YAxis stroke="#007BFF" tick={{fontSize: 12}} />
             <Tooltip />
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="top"
+              wrapperStyle={{
+                position: 'absolute',
+                right: '0px',
+                top: '0px',
+                padding: '10px',
+              }}
+              payload={[{value: 'active', color: '#007BFF', type: 'line'}]}
+            />
             <Line type="monotone" dataKey="active" stroke="#007BFF" />
           </LineChart>
         </div>
@@ -97,10 +120,22 @@ export default function StateDetails() {
     return (
       <div>
         <div className="deceased chart-block">
-          <LineChart width={900} height={300} data={stateDetailData}>
+          <LineChart width={1000} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#6C757D" tick={{fontSize: 12}} />
             <YAxis stroke="#6C757D" tick={{fontSize: 12}} />
             <Tooltip />
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="top"
+              wrapperStyle={{
+                position: 'absolute',
+                right: '0px',
+                top: '0px',
+                padding: '10px',
+              }}
+              payload={[{value: 'deceased', color: '#6C757D', type: 'line'}]}
+            />
             <Line type="monotone" dataKey="deceased" stroke="#6C757D" />
           </LineChart>
         </div>
@@ -111,10 +146,22 @@ export default function StateDetails() {
     return (
       <div>
         <div className="recovered chart-block">
-          <LineChart width={900} height={300} data={stateDetailData}>
+          <LineChart width={1000} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#27A243" tick={{fontSize: 12}} />
             <YAxis stroke="#27A243" tick={{fontSize: 12}} />
             <Tooltip />
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="top"
+              wrapperStyle={{
+                position: 'absolute',
+                right: '0px',
+                top: '0px',
+                padding: '10px',
+              }}
+              payload={[{value: 'recovered', color: '#27A243', type: 'line'}]}
+            />
             <Line type="monotone" dataKey="recovered" stroke="#27A243" />
           </LineChart>
         </div>
@@ -125,10 +172,22 @@ export default function StateDetails() {
     return (
       <div>
         <div className="tested chart-block">
-          <LineChart width={900} height={300} data={stateDetailData}>
+          <LineChart width={1000} height={300} data={stateDetailData}>
             <XAxis dataKey="date" stroke="#9673B9" tick={{fontSize: 12}} />
             <YAxis stroke="#9673B9" tick={{fontSize: 12}} />
             <Tooltip />
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="top"
+              wrapperStyle={{
+                position: 'absolute',
+                right: '0px',
+                top: '0px',
+                padding: '10px',
+              }}
+              payload={[{value: 'tested', color: '#9673B9', type: 'line'}]}
+            />
             <Line type="monotone" dataKey="tested" stroke="#9673B9" />
           </LineChart>
         </div>
@@ -137,16 +196,23 @@ export default function StateDetails() {
   }
   function renderBarChart() {
     return (
-      <div className="bar-chart-block flex items-center">
-        <BarChart width={600} height={400} data={stateDetailData}>
+      <div className="bar-chart-block">
+        <BarChart
+          width={1000}
+          height={400}
+          data={stateDetailData}
+          barCategoryGap={15}
+          barGap={7}
+          barSize={15}
+        >
           <Bar
             dataKey="confirmed"
             fill="#9A0E31"
             className="bar-chart"
             label={{
               position: 'top',
-              color: 'white',
-              fontSize: '12',
+              fill: 'white', // Set the color of the labels
+              fontSize: 8,
             }}
           />
         </BarChart>
@@ -168,14 +234,14 @@ export default function StateDetails() {
         <>
           <Counter />
         </>
-        <>
+        <div className="charts-block">
           {renderBarChart()}
           {renderConfirmedLineChart()}
           {renderActiveLineChart()}
           {renderRecoveredLineChart()}
           {renderDeceasedLineChart()}
           {renderTestedLineChart()}
-        </>
+        </div>
         <Footer />
       </div>
     </div>
