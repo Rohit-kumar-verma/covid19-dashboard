@@ -42,7 +42,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.state-name {
+.header-state-name {
   color: #0ea5e9;
   background: #0284c729;
   width: 18%;
@@ -57,7 +57,7 @@
   color: #94a3b8;
   font-family: Roboto;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .number-text {
   margin-top: 10px;

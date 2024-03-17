@@ -4,6 +4,7 @@ import {BsSearch} from 'react-icons/bs'
 import {BiChevronRightSquare} from 'react-icons/bi'
 import Footer from '../Footer'
 import Header from '../Header'
+import Counter from '../Counter'
 import './index.css'
 
 const statesList = [
@@ -231,6 +232,7 @@ const Home = () => {
           onChange={handleSearch}
         />
       </div>
+      <Counter />
       {filteredData.length > 0 ? (
         <div className="search-data-container">
           {filteredData.map(element => (
