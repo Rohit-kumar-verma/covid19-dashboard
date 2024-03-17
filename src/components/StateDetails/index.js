@@ -9,7 +9,7 @@ import {
   BarChart,
   Legend,
   Bar,
-  //   ResponsiveContainer,
+  LabelList,
 } from 'recharts'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -18,6 +18,7 @@ import './index.css'
 
 export default function StateDetails() {
   const [stateDetailData, setStateDetailData] = useState([])
+  const [stateDetailDataBar, setStateDetailDataBar] = useState([])
   const requestUrl = 'https://apis.ccbp.in/covid19-timelines-data'
   useEffect(() => {
     const resultListData = []
@@ -56,6 +57,16 @@ export default function StateDetails() {
           })
         })
         setStateDetailData(resultListData)
+        setStateDetailDataBar(
+          resultListData.map(item => {
+            const newDate = new Date(item.date)
+            const dayNumber = newDate.getDate()
+            const monthAbbreviation = newDate
+              .toLocaleString('default', {month: 'short'})
+              .slice(0, 3)
+            return {...item, date: `${dayNumber} ${monthAbbreviation}`}
+          }),
+        )
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -200,11 +211,10 @@ export default function StateDetails() {
         <BarChart
           width={1000}
           height={400}
-          data={stateDetailData}
-          barCategoryGap={15}
-          barGap={7}
-          barSize={15}
+          data={stateDetailDataBar}
+          barSize={16}
         >
+          {/* <XAxis dataKey="date" tick={{fontSize: 12}} axisLine={false} /> */}
           <Bar
             dataKey="confirmed"
             fill="#9A0E31"
@@ -215,6 +225,7 @@ export default function StateDetails() {
               fontSize: 8,
             }}
           />
+          <LabelList dataKey="date" position="bottom" />
         </BarChart>
       </div>
     )
