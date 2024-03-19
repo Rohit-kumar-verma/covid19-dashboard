@@ -220,82 +220,91 @@ const Home = () => {
   }
 
   return (
-    <div className="main-container">
+    <div>
       <Header />
-      <div className="search-bar-container">
-        <BsSearch className="search-icon" />
-        <input
-          className="search-input"
-          type="search"
-          placeholder="Enter the State"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-      <Counter />
-      {filteredData.length > 0 ? (
-        <div className="search-data-container">
-          {filteredData.map(element => (
-            <div key={element.stateCode}>
-              <ul className="search-data">
-                <li className="list-item">
-                  <Link to={`/${element.stateCode}`}>
-                    <div className="item-value">
-                      <h3 className="state-name-value">{element.name}</h3>
+      <div className="main-container">
+        <div className="search-bar-container">
+          <BsSearch className="search-icon" />
+          <input
+            className="search-input"
+            type="search"
+            placeholder="Enter the State"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        <div>
+          <Counter />
+        </div>
+        {filteredData.length > 0 ? (
+          <div className="search-data-container">
+            {filteredData.map(element => (
+              <div key={element.stateCode}>
+                <ul className="search-data">
+                  <li className="list-item">
+                    <Link to={`/${element.stateCode}`}>
+                      <div className="item-value">
+                        <h3 className="state-name-value">{element.name}</h3>
 
-                      <div className="open-detail">
-                        <h2 className="state-code-value">
-                          {element.stateCode}
-                        </h2>
-                        <BiChevronRightSquare className="right-arrow-icon" />
+                        <div className="open-detail">
+                          <h2 className="state-code-value">
+                            {element.stateCode}
+                          </h2>
+                          <BiChevronRightSquare className="right-arrow-icon" />
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                  <hr />
-                </li>
-              </ul>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="table-container" data-testId="stateWiseCovidDataTable">
-          <table className="table-data-lists">
-            <thead>
-              <tr id="heading-items">
-                <th className="table-heading">States/UT</th>
-                <p className="table-heading">Confirmed</p>
-                <th className="table-heading">Active</th>
-                <th className="table-heading">Recovered</th>
-                <th className="table-heading">Deceased</th>
-                <th className="table-heading">Population</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {dataList.map(element => (
-                <tr key={element.stateCode}>
-                  <td className="table-item state-name">{element.name}</td>
-                  <td className="table-item confirm-cases">
-                    {element.confirmed}
-                  </td>
-                  <td className="table-item active-cases">{element.active}</td>
-                  <td className="table-item recovered-cases">
-                    {element.recovered}
-                  </td>
-                  <td className="table-item deceased-cases">
-                    {element.deceased}
-                  </td>
-                  <td className="table-item population-cases">
-                    {element.population}
-                  </td>
+                    </Link>
+                    <hr />
+                  </li>
+                </ul>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div
+            className="table-container"
+            data-testId="stateWiseCovidDataTable"
+          >
+            <table className="table-data-lists">
+              <thead>
+                <tr id="heading-items">
+                  <th className="table-heading">States/UT</th>
+                  <p className="table-heading">Confirmed</p>
+                  <th className="table-heading">Active</th>
+                  <th className="table-heading">Recovered</th>
+                  <th className="table-heading">Deceased</th>
+                  <th className="table-heading">Population</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {dataList.map(element => (
+                  <tr key={element.stateCode}>
+                    <td className="table-item state-name">{element.name}</td>
+                    <td className="table-item confirm-cases">
+                      {element.confirmed}
+                    </td>
+                    <td className="table-item active-cases">
+                      {element.active}
+                    </td>
+                    <td className="table-item recovered-cases">
+                      {element.recovered}
+                    </td>
+                    <td className="table-item deceased-cases">
+                      {element.deceased}
+                    </td>
+                    <td className="table-item population-cases">
+                      {element.population}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <div className="footer-block">
+          <Footer />
         </div>
-      )}
-      <div className="footer-block">
-        <Footer />
       </div>
     </div>
   )

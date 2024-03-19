@@ -242,9 +242,9 @@ export default function StateDetails() {
             <p className="number-text">20239390</p>
           </div>
         </div>
-        <>
+        <div>
           <Counter />
-        </>
+        </div>
         <div className="charts-block">
           {renderBarChart()}
           {renderConfirmedLineChart()}
