@@ -199,7 +199,6 @@ const Home = () => {
           'https://apis.ccbp.in/covid19-state-wise-data',
         )
         const data = await response.json()
-        console.log(data)
 
         setDataList(convertObjectsDataIntoListItemsUsingForInMethod(data))
       } catch (error) {
