@@ -1,0 +1,24 @@
+.about-container {
+  background: #161625;
+  background-size: cover;
+  height: 1021px;
+  color: #f8fafc;
+  padding: 30px;
+  font-family: Roboto;
+}
+/* .main-heading {
+  font-family: ;
+} */
+
+.heading-text {
+  color: #94a3b8;
+}
+
+.about-banner-text {
+  padding: 8px;
+  list-style-type: disc;
+  color: #007bff;
+}
+.about-banner-text li {
+  margin-top: 10px;
+}
