@@ -14,6 +14,7 @@ import {
 import Header from '../Header'
 import Footer from '../Footer'
 import Counter from '../Counter'
+import LoadingSpinner from '../LoadingSpinner'
 import './index.css'
 
 const statesList = [
@@ -168,10 +169,12 @@ export default function StateDetails(props) {
   const {params} = match
   const {stateCode} = params
   console.log(stateCode)
+  const [isLoading, setIsLoading] = useState(false)
   const [stateDetailData, setStateDetailData] = useState([])
   const [stateDetailDataBar, setStateDetailDataBar] = useState([])
   useEffect(() => {
     const resultListData = []
+    setIsLoading(true)
     const fetchData = async () => {
       try {
         const requestUrl = `https://apis.ccbp.in/covid19-timelines-data/${stateCode}`
@@ -189,12 +192,6 @@ export default function StateDetails(props) {
         console.log(keyNames)
 
         keyNames.forEach(element => {
-          //   console.log('date: ', element)
-          //   console.log('confirmed:', jsonData.AP.dates[element].total.confirmed)
-          //   console.log('deceased:', jsonData.AP.dates[element].total.deceased)
-          //   console.log('recovered:', jsonData.AP.dates[element].total.recovered)
-          //   console.log('tested:', jsonData.AP.dates[element].total.tested)
-
           resultListData.push({
             date: element,
             confirmed: jsonData[stateCode].dates[element].total.confirmed,
@@ -218,13 +215,14 @@ export default function StateDetails(props) {
             return {...item, date: `${dayNumber} ${monthAbbreviation}`}
           }),
         )
+        setIsLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
     }
 
     fetchData()
-  }, [])
+  }, [stateCode])
 
   function renderConfirmedLineChart() {
     return (
@@ -382,33 +380,37 @@ export default function StateDetails(props) {
     )
   }
 
+  const renderedDetailsData = (
+    <div className="state-detail-container">
+      <div className="header-block">
+        <h1 className="header-state-name">
+          {statesList.find(item => item.state_code === stateCode)?.state_name}
+        </h1>
+        <div className="header-block-right-1">
+          <p>Tested</p>
+          <p className="number-text">20239390</p>
+        </div>
+      </div>
+      <div>
+        <Counter />
+      </div>
+      <div className="charts-block">
+        {renderBarChart()}
+        <h1 className="charts-heading">Daily Spread Trends</h1>
+        {renderConfirmedLineChart()}
+        {renderActiveLineChart()}
+        {renderRecoveredLineChart()}
+        {renderDeceasedLineChart()}
+        {renderTestedLineChart()}
+      </div>
+      <Footer />
+    </div>
+  )
+
   return (
     <div className="details-main-container">
       <Header />
-      <div className="state-detail-container">
-        <div className="header-block">
-          <h1 className="header-state-name">
-            {statesList.find(item => item.state_code === stateCode)?.state_name}
-          </h1>
-          <div className="header-block-right-1">
-            <p>Tested</p>
-            <p className="number-text">20239390</p>
-          </div>
-        </div>
-        <div>
-          <Counter />
-        </div>
-        <div className="charts-block">
-          {renderBarChart()}
-          <h1 className="charts-heading">Daily Spread Trends</h1>
-          {renderConfirmedLineChart()}
-          {renderActiveLineChart()}
-          {renderRecoveredLineChart()}
-          {renderDeceasedLineChart()}
-          {renderTestedLineChart()}
-        </div>
-        <Footer />
-      </div>
+      {isLoading ? <LoadingSpinner /> : renderedDetailsData}
     </div>
   )
 }

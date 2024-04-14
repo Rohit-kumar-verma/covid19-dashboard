@@ -27,6 +27,9 @@
   transform: translate(-50%, -50%);
 }
 
+.search-icon {
+  font-size: 4px; /* Adjust size as needed */
+}
 .search-input {
   align-self: center;
   justify-self: center;
@@ -58,6 +61,7 @@
 .search-data {
   list-style-type: none;
   color: #f8fafc;
+  text-decoration: none;
 }
 
 hr {
@@ -79,6 +83,7 @@ hr {
   letter-spacing: 0px;
   text-align: left;
   color: #64748b;
+  text-decoration: none;
 }
 .open-detail {
   display: grid;
@@ -112,6 +117,7 @@ hr {
 
 .list-item {
   padding: 10px 10px;
+  text-decoration: none;
 }
 .table-container {
   /* width: 54%; */
@@ -126,8 +132,7 @@ hr {
   margin-top: 200px;
   color: #475569;
   border: 1px solid #475569;
-  width: 80%;
-  height: 2080px;
+  width: 75%;
   top: 576px;
   left: 150px;
   border-radius: 12px;
@@ -138,6 +143,19 @@ hr {
   border-bottom-width: 1px;
   border-color: #94a3b8;
   border-style: solid;
+  display: flex;
+  justify-content: space-evenly;
+  border-width: 0;
+}
+.state-name-heading {
+  justify-self: flex-start;
+  margin-right: auto;
+  color: white;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
 }
 .table-heading {
   color: white;
@@ -146,7 +164,19 @@ hr {
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
+  margin-right: 40px;
+  align-content: center;
+}
+.statewise-list-value {
+  margin-top: 20px;
+  list-style-type: none;
+}
+.stat-wise-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 26px;
 }
 .table-item {
   color: #f8fafc;
@@ -155,6 +185,9 @@ hr {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
+  flex: 1;
+  text-align: center;
+  text-align: start;
 }
 
 .state-name {
@@ -163,7 +196,7 @@ hr {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
-  text-align: left;
+  flex: 3.2;
 }
 .confirm-cases {
   color: #ff073a;
