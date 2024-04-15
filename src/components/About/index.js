@@ -31,7 +31,7 @@ export default function About() {
         <h2 className="main-heading">About</h2>
         <p className="heading-text">Last updated on march 28th 2021</p>
       </div>
-      <ul className="about-banner-text">
+      <ul className="faqsUnorderedList" data-test-id="faqsUnorderedList">
         {faqsData.map(element => (
           <li>{element.banner}</li>
         ))}
@@ -41,9 +41,17 @@ export default function About() {
   )
 
   return (
-    <div className="about-container">
+    <>
       <Header />
-      {isLoading ? <LoadingSpinner /> : renderAboutData}
-    </div>
+      <div className="about-container">
+        {isLoading ? (
+          <div data-test-id="aboutRouteLoader">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          renderAboutData
+        )}
+      </div>
+    </>
   )
 }

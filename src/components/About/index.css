@@ -14,11 +14,11 @@
   color: #94a3b8;
 }
 
-.about-banner-text {
+.faqsUnorderedList {
   padding: 8px;
   list-style-type: disc;
   color: #007bff;
 }
-.about-banner-text li {
+.faqsUnorderedList li {
   margin-top: 10px;
 }

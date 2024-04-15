@@ -410,7 +410,13 @@ export default function StateDetails(props) {
   return (
     <div className="details-main-container">
       <Header />
-      {isLoading ? <LoadingSpinner /> : renderedDetailsData}
+      {isLoading ? (
+        <div data-testId="stateDetailsLoader">
+          <LoadingSpinner />{' '}
+        </div>
+      ) : (
+        renderedDetailsData
+      )}
     </div>
   )
 }

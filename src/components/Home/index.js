@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
 import {BiChevronRightSquare} from 'react-icons/bi'
+import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
 import Footer from '../Footer'
 import Header from '../Header'
 import Counter from '../Counter'
@@ -160,6 +161,7 @@ const Home = () => {
   const [dataList, setDataList] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredData, setFilteredData] = useState([])
+  const [sortOrder, setSortOrder] = useState('ascending')
 
   function convertObjectsDataIntoListItemsUsingForInMethod(data) {
     const resultList = []
@@ -222,6 +224,24 @@ const Home = () => {
     setFilteredData(DataValue)
   }
 
+  const sortAscending = () => {
+    if (sortOrder !== 'ascending') {
+      const sortedData = [...dataList].sort((a, b) =>
+        a.name.localeCompare(b.name),
+      )
+      setDataList(sortedData)
+      setSortOrder('ascending')
+    }
+  }
+  const sortDescending = () => {
+    if (sortOrder !== 'descending') {
+      const sortedData = [...dataList].sort((a, b) =>
+        b.name.localeCompare(a.name),
+      )
+      setDataList(sortedData)
+      setSortOrder('descending')
+    }
+  }
   const renderData = (
     <div className="main-container">
       <div className="search-bar-container">
@@ -241,9 +261,19 @@ const Home = () => {
         <div className="search-data-container">
           {filteredData.map(element => (
             <div key={element.stateCode}>
-              <ul className="search-data">
-                <Link to={`/state/${element.stateCode}`}>
-                  <li className="list-item">
+              <ul
+                className="search-data"
+                data-testId="searchResultsUnorderedList"
+              >
+                <li
+                  className="list-item"
+                  data-testId="searchResultsUnorderedList"
+                >
+                  {' '}
+                  <Link
+                    to={`/state/${element.stateCode}`}
+                    className="custom-link"
+                  >
                     <div className="item-value">
                       <h3 className="state-name-value">{element.name}</h3>
 
@@ -255,8 +285,8 @@ const Home = () => {
                       </div>
                     </div>
                     <hr />
-                  </li>
-                </Link>
+                  </Link>
+                </li>
               </ul>
             </div>
           ))}
@@ -266,12 +296,26 @@ const Home = () => {
           <div className="table-data-lists">
             <div className="statewise-list-data">
               <div id="heading-items">
-                <p className="state-name-heading">States/UT</p>
-                <p className="table-heading">Confirmed</p>
-                <p className="table-heading">Active</p>
-                <p className="table-heading">Recovered</p>
-                <p className="table-heading">Deceased</p>
-                <p className="table-heading">Population</p>
+                <p className="state-name-heading">
+                  States/UT
+                  <span className="sort-data">
+                    <FcGenericSortingAsc
+                      className="sort-icon"
+                      onClick={sortAscending}
+                    />
+                    <FcGenericSortingDesc
+                      className="sort-icon"
+                      onClick={sortDescending}
+                    />
+                  </span>
+                </p>
+                <div className="other-columns">
+                  <p className="table-heading">Confirmed</p>
+                  <p className="table-heading">Active</p>
+                  <p className="table-heading">Recovered</p>
+                  <p className="table-heading">Deceased</p>
+                  <p className="table-heading">Population</p>
+                </div>
               </div>
               <hr />
             </div>
@@ -307,7 +351,13 @@ const Home = () => {
   return (
     <div>
       <Header />
-      {isLoading ? <LoadingSpinner /> : renderData}
+      {isLoading ? (
+        <div data-test-id="homeRouteLoader">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        renderData
+      )}
     </div>
   )
 }

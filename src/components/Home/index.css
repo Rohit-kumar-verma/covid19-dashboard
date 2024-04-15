@@ -1,7 +1,7 @@
-* {
+/* * {
   padding: 0;
   margin: 0;
-}
+} */
 
 .main-container {
   background-color: #161625;
@@ -9,7 +9,6 @@
   background-size: cover;
   padding: 60px 40px;
 }
-
 .search-bar-container {
   width: 50%;
   flex-shrink: 0;
@@ -28,7 +27,7 @@
 }
 
 .search-icon {
-  font-size: 4px; /* Adjust size as needed */
+  font-size: 24px;
 }
 .search-input {
   align-self: center;
@@ -61,6 +60,8 @@
 .search-data {
   list-style-type: none;
   color: #f8fafc;
+}
+.search-data Link {
   text-decoration: none;
 }
 
@@ -117,6 +118,8 @@ hr {
 
 .list-item {
   padding: 10px 10px;
+}
+.custom-link {
   text-decoration: none;
 }
 .table-container {
@@ -156,6 +159,19 @@ hr {
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0em;
+  flex: 7;
+}
+.sort-data {
+  margin-left: 10px;
+}
+.sort-icon {
+  color: #ffffff;
+}
+.other-columns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  flex: 3.5;
 }
 .table-heading {
   color: white;
@@ -165,7 +181,7 @@ hr {
   line-height: 24px;
   letter-spacing: 0em;
   text-align: center;
-  margin-right: 40px;
+  margin-right: 60px;
   align-content: center;
 }
 .statewise-list-value {
@@ -186,7 +202,6 @@ hr {
   line-height: 24px;
   letter-spacing: 0em;
   flex: 1;
-  text-align: center;
   text-align: start;
 }
 
@@ -196,7 +211,8 @@ hr {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
-  flex: 3.2;
+  flex: 3.6;
+  flex-wrap: wrap;
 }
 .confirm-cases {
   color: #ff073a;
@@ -218,4 +234,67 @@ hr {
 }
 .footer-block {
   margin-top: 400px;
+}
+
+/* Add this at the end of your existing CSS file */
+
+@media only screen and (max-width: 768px) {
+  .main-container {
+    width: auto;
+    display: inline-block;
+  }
+  .search-bar-container {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+    top: 10%; /* Adjust position for smaller screens */
+  }
+
+  .search-input {
+    width: 80%; /* Adjust width for smaller screens */
+    margin-left: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .search-data-container {
+    margin-top: 100px; /* Adjust margin for smaller screens */
+  }
+
+  .item-value {
+    flex-direction: column; /* Change to column layout for smaller screens */
+    align-items: flex-start; /* Align items to start for smaller screens */
+  }
+
+  .open-detail {
+    flex-direction: column; /* Change to column layout for smaller screens */
+    align-items: flex-start; /* Align items to start for smaller screens */
+  }
+
+  .state-code-value {
+    width: auto; /* Adjust width for smaller screens */
+    padding: 0 10px; /* Adjust padding for smaller screens */
+    margin-top: 5px; /* Adjust margin for smaller screens */
+  }
+
+  .right-arrow-icon {
+    display: none; /* Hide the right arrow icon for smaller screens */
+  }
+
+  .table-data-lists {
+    width: 90%; /* Adjust width for smaller screens */
+    margin: 50px auto; /* Adjust margin for smaller screens */
+  }
+
+  .stat-wise-list-item {
+    flex-direction: column; /* Change to column layout for smaller screens */
+    align-items: flex-start; /* Align items to start for smaller screens */
+    margin-top: 20px; /* Adjust margin for smaller screens */
+  }
+
+  .state-name {
+    flex: 1; /* Adjust flex for smaller screens */
+    margin-bottom: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .table-item {
+    text-align: left; /* Align text to left for smaller screens */
+  }
 }
